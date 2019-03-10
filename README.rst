@@ -13,10 +13,6 @@ API clients permission.
 
 API Key Permission Utility for Django Rest Framework
 
-Documentation
--------------
-
-The full documentation is at https://api_clients.readthedocs.io.
 
 Quickstart
 ----------
