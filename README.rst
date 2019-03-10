@@ -11,7 +11,7 @@ API clients permission.
 .. image:: https://codecov.io/gh/jeromecaisip/api_clients/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/jeromecaisip/api_clients
 
-Permission handler for drf API's.
+API Key Permission Utility for Django Rest Framework
 
 Documentation
 -------------
@@ -31,38 +31,40 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'api_clients.apps.ApiClientsConfig',
+        'api_clients',
         ...
     )
 
-Add API clients permission.'s URL patterns:
+Add API clients permission's permission class:
 
 .. code-block:: python
 
-    from api_clients import urls as api_clients_urls
 
 
-    urlpatterns = [
+    REST_FRAMEWORK = {
         ...
-        url(r'^', include(api_clients_urls)),
+         'DEFAULT_PERMISSION_CLASSES': (
+            'api_clients.permissions.HasAPIAccess',
+          )
         ...
-    ]
+    }
 
-Features
---------
 
-* TODO
+Create a client model with the api key:
 
-Running Tests
--------------
+.. code-block:: python
 
-Does the code actually work?
+    from api_client.models import Client
+    client = Client.objects.create(api_key='my_api_key')
 
-::
 
-    source <YOURVIRTUALENV>/bin/activate
-    (myenv) $ pip install tox
-    (myenv) $ tox
+Include api key on the request headers:
+
+.. code-block:: python
+
+    headers = {'HTTP_API_KEY: 'my_api_key'}
+
+
 
 Credits
 -------
