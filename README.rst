@@ -58,7 +58,7 @@ Include api key on the request headers:
 
 .. code-block:: python
 
-    headers = {'HTTP_API_KEY: 'my_api_key'}
+    headers = {'api-key: 'my_api_key'}
 
 
 
